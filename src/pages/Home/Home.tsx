@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { Box } from "@mui/system"
 
+import { Intro } from "./components"
 import { Header } from "./../../components"
 
 interface IProps {
@@ -14,8 +15,9 @@ export default function Home({ title }: IProps) {
   }, [])
 
   return (
-    <Box component="main">
+    <Box component="main" sx={{display: "flex", flexDirection: "column"}}>
       <Header />
+      <Intro />
     </Box>
   )
 }
