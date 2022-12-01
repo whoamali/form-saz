@@ -11,6 +11,7 @@ export default function Intro() {
         height: "calc(100vh - 80px)",
         backgroundColor: "#205E47",
         justifyContent: "center",
+        mb: {xs: "100px", sm: "150px", md: "200px"},
       }}
     >
       <Typography
@@ -44,10 +45,24 @@ export default function Intro() {
       <Box
         component="img"
         sx={{
-          width: {xs: "90%", sm: "70%", md: "50%", lg: "45%", xl: "40%", xxl: "25%"},
+          width: {
+            xs: "90%",
+            sm: "70%",
+            md: "50%",
+            lg: "45%",
+            xl: "40%",
+            xxl: "25%",
+          },
           height: "auto",
           position: "absolute",
-          bottom: {xs: "-40px", sm: "-80px", md: "-90px", lg: "-110px", xl: "-150px", xxl: "-250px"},
+          bottom: {
+            xs: "-40px",
+            sm: "-80px",
+            md: "-90px",
+            lg: "-110px",
+            xl: "-150px",
+            xxl: "-250px",
+          },
           left: 0,
           right: 0,
           ml: "auto",
