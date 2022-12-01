@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import {
   Box,
   AppBar,
@@ -40,7 +40,7 @@ export default function Header({ window }: IProps) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        <Logo size="22px" />
+        <Logo size="28px" />
       </Typography>
       <Divider />
       <List>
@@ -94,7 +94,7 @@ export default function Header({ window }: IProps) {
   )
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", height: "80px" }}>
       <AppBar
         component="nav"
         sx={{ height: "80px", backgroundColor: "white", boxShadow: "none" }}
@@ -115,7 +115,7 @@ export default function Header({ window }: IProps) {
           >
             <Stack direction="row" alignItems="center">
               <Box component="div">
-                <Logo size="22px" />
+                <Logo size="28px" />
               </Box>
               <Stack
                 sx={{ display: { xs: "none", sm: "flex" } }}
@@ -129,6 +129,7 @@ export default function Header({ window }: IProps) {
                     mr: { sm: "8px", md: "25px" },
                     color: "#5E2317",
                     backgroundColor: "transparent !important",
+                    fontSize: {xs: "16px", sm: "18px", md: "20px"}
                   }}
                   disableRipple
                 >
@@ -142,6 +143,7 @@ export default function Header({ window }: IProps) {
                     mr: { sm: "8px", md: "20px" },
                     color: "#5E2317",
                     backgroundColor: "transparent !important",
+                    fontSize: {xs: "16px", sm: "18px", md: "20px"}
                   }}
                   disableRipple
                 >
@@ -155,6 +157,7 @@ export default function Header({ window }: IProps) {
                     mr: { sm: "8px", md: "20px" },
                     color: "#5E2317",
                     backgroundColor: "transparent !important",
+                    fontSize: {xs: "16px", sm: "18px", md: "20px"}
                   }}
                   disableRipple
                 >
