@@ -4,8 +4,8 @@ import { BrowserRouter } from "react-router-dom"
 
 import App from "./pages/App"
 
-import "./index.css"
-import "./fonts/IRANSansWeb.ttf"
+import "./assets/css/index.css"
+import "./assets/fonts/IRANSansWeb.ttf"
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
