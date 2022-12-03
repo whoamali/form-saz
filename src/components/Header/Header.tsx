@@ -118,7 +118,7 @@ export default function Header({ window }: IProps) {
                 <Logo size="28px" />
               </Box>
               <Stack
-                sx={{ display: { xs: "none", sm: "flex" } }}
+                sx={{ display: { xs: "none", sm: "flex" }, ml: {sm: "50px"} }}
                 direction="row"
               >
                 <Button
@@ -193,6 +193,7 @@ export default function Header({ window }: IProps) {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
+          anchor="right"
           ModalProps={{
             keepMounted: true, // Better open performance on mobile.
           }}
