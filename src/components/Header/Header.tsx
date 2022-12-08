@@ -83,7 +83,7 @@ export default function Header({ window }: IProps) {
               ":hover": { backgroundColor: "#1b5e20" },
             }}
             onClick={() => {
-              navigate("#admin_panel")
+              navigate("/login")
             }}
           >
             <ListItemText primary={"ناحیه کاربری"} />
@@ -127,9 +127,13 @@ export default function Header({ window }: IProps) {
                   }}
                   sx={{
                     mr: { sm: "8px", md: "25px" },
-                    color: "#5E2317",
+                    color: "#000",
                     backgroundColor: "transparent !important",
-                    fontSize: {xs: "16px", sm: "18px", md: "20px"}
+                    fontSize: {xs: "16px", sm: "18px", md: "20px"},
+                    transition: "all 250ms",
+                    ":hover": {
+                      color: "#5E2317"
+                    }
                   }}
                   disableRipple
                 >
@@ -141,9 +145,13 @@ export default function Header({ window }: IProps) {
                   }}
                   sx={{
                     mr: { sm: "8px", md: "20px" },
-                    color: "#5E2317",
+                    color: "#000",
                     backgroundColor: "transparent !important",
-                    fontSize: {xs: "16px", sm: "18px", md: "20px"}
+                    fontSize: {xs: "16px", sm: "18px", md: "20px"},
+                    transition: "all 250ms",
+                    ":hover": {
+                      color: "#5E2317"
+                    }
                   }}
                   disableRipple
                 >
@@ -155,9 +163,13 @@ export default function Header({ window }: IProps) {
                   }}
                   sx={{
                     mr: { sm: "8px", md: "20px" },
-                    color: "#5E2317",
+                    color: "#000",
                     backgroundColor: "transparent !important",
-                    fontSize: {xs: "16px", sm: "18px", md: "20px"}
+                    fontSize: {xs: "16px", sm: "18px", md: "20px"},
+                    transition: "all 250ms",
+                    ":hover": {
+                      color: "#5E2317"
+                    }
                   }}
                   disableRipple
                 >
@@ -170,7 +182,7 @@ export default function Header({ window }: IProps) {
               color="success"
               sx={{ display: { xs: "none", sm: "block" } }}
               onClick={() => {
-                navigate("#admin_panel")
+                navigate("/login")
               }}
             >
               {"ناحیه کاربری"}

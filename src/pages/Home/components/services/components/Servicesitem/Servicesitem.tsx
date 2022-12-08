@@ -16,8 +16,8 @@ export default function ServicesItem({ title, Icon }: IProps) {
       sx={{
         width: { xs: "220px", md: "250px" },
         height: "120px",
-        border: ".5px solid #230e09",
-        color: "#230e09",
+        border: ".5px solid #205e47",
+        color: "#123326",
         borderRadius: "5px",
         mx: { xs: "20px", md: "30px" },
         my: "20px",
@@ -25,7 +25,7 @@ export default function ServicesItem({ title, Icon }: IProps) {
         transition: "all 250ms",
         ":hover": {
             color: "white",
-            backgroundColor: "#230e09",
+            backgroundColor: "#205e47",
         }
       }}
     >
