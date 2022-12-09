@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, createSearchParams } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form"
 import {
   Typography,
@@ -7,17 +7,17 @@ import {
   Button,
   Stack,
   Box,
-  Checkbox,
-  FormGroup,
-  FormControlLabel,
   InputLabel,
   FormControl,
   OutlinedInput,
   InputAdornment,
   IconButton,
+  Alert,
 } from "@mui/material"
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
+
+import { axios } from "./../../../../utils"
 
 interface Inputs {
   username: string
@@ -29,9 +29,34 @@ interface Inputs {
 export default function Form() {
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+  const [postError, setPostError] = useState<
+    { message: string; name: string }[] | null
+  >()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = async data => {
+    try {
+      const res = await axios("").post("/singup", data)
+      if (res) {
+        setPostError(null)
+        navigate({
+          pathname: "/login",
+          search: `?${createSearchParams([["registered", "true"]])}`,
+        })
+      }
+    } catch (err: any) {
+      console.log(err)
+      setPostError(
+        err.response.data.errors.map(
+          (val: { message: string; name: string }) => val,
+        ),
+      )
+    }
+  }
 
   const handleClickShowPassword = () => {
     setShowPassword(preShowPassword => !preShowPassword)
@@ -48,6 +73,15 @@ export default function Form() {
           ثبت نام کاربر جدید
         </Typography>
       </Box>
+      {postError !== null && (
+        <Box sx={{ width: { xs: "80%", sm: "450px" }, mb: "15px" }}>
+          {postError?.map((val: { message: string; name: string }, index) => (
+            <Alert severity="error" key={val.name + val.message + index}>
+              {val.message}
+            </Alert>
+          ))}
+        </Box>
+      )}
       <Box sx={{ width: { xs: "80%", sm: "450px" }, mb: "15px" }}>
         <TextField
           label="نام کاربری"

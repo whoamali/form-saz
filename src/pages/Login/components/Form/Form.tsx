@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import { useForm, SubmitHandler } from "react-hook-form"
 import {
   Typography,
@@ -15,9 +15,12 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  Alert,
 } from "@mui/material"
 import Visibility from "@mui/icons-material/Visibility"
 import VisibilityOff from "@mui/icons-material/VisibilityOff"
+
+import { axios } from "./../../../../utils"
 
 interface Inputs {
   username: string
@@ -27,10 +30,33 @@ interface Inputs {
 
 export default function Form() {
   const navigate = useNavigate()
+  const [searchParams, _setSearchParams] = useSearchParams()
   const [showPassword, setShowPassword] = useState<boolean>(false)
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>()
+  const [postError, setPostError] = useState<
+    { message: string; name: string }[] | null
+  >()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>()
 
-  const onSubmit: SubmitHandler<Inputs> = data => console.log(data)
+  const onSubmit: SubmitHandler<Inputs> = async data => {
+    try {
+      const res = await axios("").post("/login", data)
+      if (res) {
+        localStorage.setItem("use", JSON.stringify(res.data.user))
+        setPostError(null)
+        navigate("/dashboard")
+      }
+    } catch (err: any) {
+      setPostError(
+        err.response.data.errors.map(
+          (val: { message: string; name: string }) => val,
+        ),
+      )
+    }
+  }
 
   const handleClickShowPassword = () => {
     setShowPassword(preShowPassword => !preShowPassword)
@@ -47,6 +73,22 @@ export default function Form() {
           ورود به حساب کاربری
         </Typography>
       </Box>
+      {postError !== null && (
+        <Box sx={{ width: { xs: "80%", sm: "450px" }, mb: "15px" }}>
+          {postError?.map((val: { message: string; name: string }, index) => (
+            <Alert severity="error" key={val.name + val.message + index}>
+              {val.message}
+            </Alert>
+          ))}
+        </Box>
+      )}
+      {postError == null && searchParams.get("registered") && (
+        <Box sx={{ width: { xs: "80%", sm: "450px" }, mb: "15px" }}>
+          <Alert severity="success">
+            ثبت نام شما با موفقیت انجام شد لطفا وارد شوید!
+          </Alert>
+        </Box>
+      )}
       <Box sx={{ width: { xs: "80%", sm: "450px" }, mb: "15px" }}>
         <TextField
           label="نام کاربری یا ایمیل"
