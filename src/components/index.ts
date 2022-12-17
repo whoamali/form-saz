@@ -1,6 +1,7 @@
 export { Header } from "./Header"
 export { Footer } from "./Footer"
 export { Logo } from "./Logo"
+export { Loading } from "./Loading"
 export { DashboardHeader } from "./DashboardHeader"
 export { DashboardFooter } from "./DashboardFooter"
 export { DashboardDrawer } from "./DashboardDrawer"
