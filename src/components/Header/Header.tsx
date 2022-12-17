@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import {
   Box,
@@ -18,6 +18,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu"
 
 import { Logo } from "./../Logo"
+import { useAuth } from "./../../hooks"
 
 interface IProps {
   window?: () => Window
@@ -27,8 +28,21 @@ const drawerWidth = 240
 
 export default function Header({ window }: IProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
-
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
   const navigate = useNavigate()
+  const [data] = useAuth()
+
+  useEffect(() => {
+    if (data !== undefined) {
+      if (!data.expired) {
+        setLoggedIn(false)
+      } else {
+        setLoggedIn(true)
+      }
+    } else {
+      setLoggedIn(false)
+    }
+  }, [data])
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen)
@@ -86,7 +100,9 @@ export default function Header({ window }: IProps) {
               navigate("/login")
             }}
           >
-            <ListItemText primary={"ناحیه کاربری"} />
+            <ListItemText
+              primary={loggedIn ? "ورود/ثبت نام" : "ناحیه کاربری"}
+            />
           </ListItemButton>
         </ListItem>
       </List>
@@ -118,7 +134,7 @@ export default function Header({ window }: IProps) {
                 <Logo size="28px" />
               </Box>
               <Stack
-                sx={{ display: { xs: "none", sm: "flex" }, ml: {sm: "50px"} }}
+                sx={{ display: { xs: "none", sm: "flex" }, ml: { sm: "50px" } }}
                 direction="row"
               >
                 <Button
@@ -129,11 +145,11 @@ export default function Header({ window }: IProps) {
                     mr: { sm: "8px", md: "25px" },
                     color: "#000",
                     backgroundColor: "transparent !important",
-                    fontSize: {xs: "16px", sm: "18px", md: "20px"},
+                    fontSize: { xs: "16px", sm: "18px", md: "20px" },
                     transition: "all 250ms",
                     ":hover": {
-                      color: "#5E2317"
-                    }
+                      color: "#5E2317",
+                    },
                   }}
                   disableRipple
                 >
@@ -147,11 +163,11 @@ export default function Header({ window }: IProps) {
                     mr: { sm: "8px", md: "20px" },
                     color: "#000",
                     backgroundColor: "transparent !important",
-                    fontSize: {xs: "16px", sm: "18px", md: "20px"},
+                    fontSize: { xs: "16px", sm: "18px", md: "20px" },
                     transition: "all 250ms",
                     ":hover": {
-                      color: "#5E2317"
-                    }
+                      color: "#5E2317",
+                    },
                   }}
                   disableRipple
                 >
@@ -165,11 +181,11 @@ export default function Header({ window }: IProps) {
                     mr: { sm: "8px", md: "20px" },
                     color: "#000",
                     backgroundColor: "transparent !important",
-                    fontSize: {xs: "16px", sm: "18px", md: "20px"},
+                    fontSize: { xs: "16px", sm: "18px", md: "20px" },
                     transition: "all 250ms",
                     ":hover": {
-                      color: "#5E2317"
-                    }
+                      color: "#5E2317",
+                    },
                   }}
                   disableRipple
                 >
@@ -185,7 +201,7 @@ export default function Header({ window }: IProps) {
                 navigate("/login")
               }}
             >
-              {"ناحیه کاربری"}
+              {loggedIn ? "ورود/ثبت نام" : "ناحیه کاربری"}
             </Button>
           </Stack>
 
