@@ -45,7 +45,7 @@ export default function Form() {
     try {
       const res = await axios("").post("/login", data)
       if (res) {
-        localStorage.setItem("use", JSON.stringify(res.data.user))
+        localStorage.setItem("user", JSON.stringify(res.data.user))
         setPostError(null)
         navigate("/dashboard")
       }

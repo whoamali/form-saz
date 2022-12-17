@@ -19,11 +19,11 @@ const dataDefaultValues: Data = {
 }
 
 export default function useAuth() {
-  const [data, setData] = useState<Data>(dataDefaultValues)
+  const [data, setData] = useState<Data>()
 
   useEffect(() => {
-    const user = localStorage.getItem("use")
-    if (user) {
+    const user = localStorage.getItem("user")
+    if (user !== null) {
       axios("")
         .post("/auth", {
           token: JSON.parse(user).token,
