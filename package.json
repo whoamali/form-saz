@@ -1,0 +1,27 @@
+{
+  "name": "form-saz",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/whoamali/form-saz.git",
+  "author": "|Ali Soleimani| <alisoleimani199@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node app",
+    "dev": "cross-env NODE_ENV=development DEBUG=application nodemon app"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jalali-moment": "^3.3.11",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.5",
+    "nodemon": "^2.0.20",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
+}
