@@ -8,12 +8,22 @@ module.exports = async (req, res) => {
     const jwtValidation = tokenValidation(req.body.token);
     if (jwtValidation.userId !== null) {
       const user = await User.findById(jwtValidation.userId);
-      res.status(200).json({
-        status: "success",
-        statusCode: 200,
-        errors: null,
-        user: { ...user._doc, password: undefined },
-      });
+      if (user) {
+        res.status(200).json({
+          status: "success",
+          statusCode: 200,
+          errors: null,
+          user: { ...user._doc, password: undefined },
+        });
+      } else {
+        return res
+        .status(400)
+        .json({
+          status: "error",
+          statusCode: 400,
+          errors: ["کاربر مورد نظر یافت نشد!"],
+        });
+      }
     } else {
       return res
         .status(400)
