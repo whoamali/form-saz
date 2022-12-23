@@ -55,7 +55,7 @@ export default function DashboardDrawer({ activeRoute }: IProps) {
     <Box
       sx={{
         backgroundColor: "white",
-        height: "calc(100vh - 64px)",
+        height: "100%",
         width: "200px",
       }}
     >

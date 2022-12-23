@@ -26,7 +26,7 @@ export default function Dashboard() {
   return (
     <Box>
       <DashboardHeader />
-      <Stack direction="row">
+      <Stack direction="row" sx={{ height: "calc(100vh - 64px);" }}>
         <DashboardDrawer activeRoute={handleActiveRoute(pathname)} />
         <Outlet />
       </Stack>
