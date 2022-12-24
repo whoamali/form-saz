@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(require("./routes/AUTH").singup);
 app.use(require("./routes/AUTH").login);
 app.use(require("./routes/AUTH").auth);
+app.use(require("./routes/GET").form);
 
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
