@@ -29,6 +29,8 @@ app.use(require("./routes/AUTH").singup);
 app.use(require("./routes/AUTH").login);
 app.use(require("./routes/AUTH").auth);
 app.use(require("./routes/GET").form);
+app.use(require("./routes/GET").getName);
+app.use(require("./routes/POST").user);
 
 let PORT = process.env.PORT || 3000;
 app.listen(PORT, () =>
