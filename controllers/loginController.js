@@ -37,7 +37,9 @@ module.exports = async (req, res) => {
           time: Date(),
           userId: user.id,
         };
-        const token = jwt.sign(data, jwtSecretKey, { expiresIn: `${rememberMe ? "10d" : "2h"}` });
+        const token = jwt.sign(data, jwtSecretKey, {
+          expiresIn: `${rememberMe ? "10d" : "2h"}`,
+        });
         res.status(200).json({
           status: "success",
           statusCode: 200,
