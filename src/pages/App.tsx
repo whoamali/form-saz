@@ -4,7 +4,7 @@ import { Home } from "./Home"
 import { Login } from "./Login"
 import { Logout } from "./Logout"
 import { Singup } from "./Singup"
-import { Dashboard, DashboardIndex } from "./Dashboard"
+import { Dashboard, DashboardIndex, DashboardUserInfo } from "./Dashboard"
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
       <Route path="/singup" element={<Singup title="فرم ساز | ثبت نام" />} />
       <Route path="/dashboard" element={<Dashboard />}>
         <Route index element={<DashboardIndex title="فرم ساز | داشبورد" />} />
+        <Route path="user-info" element={<DashboardUserInfo title="فرم ساز | اطلاعات کاربری" />} />
       </Route>
     </Routes>
   )
