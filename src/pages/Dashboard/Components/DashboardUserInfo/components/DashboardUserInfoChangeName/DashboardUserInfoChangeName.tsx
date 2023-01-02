@@ -1,5 +1,12 @@
 import { useEffect, useState } from "react"
-import { Box, TextField, Button, CircularProgress } from "@mui/material"
+import {
+  Box,
+  TextField,
+  Button,
+  CircularProgress,
+  Snackbar,
+  Alert,
+} from "@mui/material"
 import { useForm, SubmitHandler, ChangeHandler } from "react-hook-form"
 
 import { axios } from "./../../../../../../utils"
@@ -16,6 +23,11 @@ export default function DashboardUserInfoChangeName() {
   const [name, setName] = useState<string>("")
   const [active, setActive] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(false)
+  const [response, setResponse] = useState<{
+    open: boolean
+    type: "error" | "success"
+    message: string
+  }>({ open: false, type: "success", message: "" })
   const {
     register,
     handleSubmit,
@@ -52,6 +64,15 @@ export default function DashboardUserInfoChangeName() {
     }
   }, [name, defaultName])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (response.open === true) {
+        setResponse({ open: false, type: "success", message: "" })
+      }
+    }, 3000)
+    return () => clearTimeout(timer)
+  }, [response])
+
   const onSubmit: SubmitHandler<Inputs> = async data => {
     setLoading(true)
     const user = localStorage.getItem("user")
@@ -59,8 +80,20 @@ export default function DashboardUserInfoChangeName() {
       axios(JSON.parse(user).token)
         .post("/changename", data)
         .then(res => {
+          setResponse({
+            open: true,
+            type: "success",
+            message: "با موفقیت ثبت شد!",
+          })
           setDefaultName(data.name)
           setLoading(false)
+        })
+        .catch(err => {
+          setResponse({
+            open: true,
+            type: "success",
+            message: "خطایی پیش آمد!",
+          })
         })
     }
   }
@@ -71,6 +104,12 @@ export default function DashboardUserInfoChangeName() {
 
   return (
     <>
+      <Snackbar
+        open={response.open}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      >
+        <Alert severity={response.type}>{response.message}</Alert>
+      </Snackbar>
       <Box sx={{ mb: "30px" }}>
         <TextField
           label="نام و نام خانوادگی"
