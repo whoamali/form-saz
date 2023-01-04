@@ -1,7 +1,6 @@
-const jwt = require("jsonwebtoken");
-
 const { User } = require("./../models");
 const { userValidation } = require("./../utils");
+const { registeredMail } = require("./../configs/email");
 
 module.exports = async (req, res) => {
   const errors = [];
@@ -20,6 +19,7 @@ module.exports = async (req, res) => {
     }
     const user = await User.create({ ...req.body });
     if (user) {
+      await registeredMail(email, username);
       res.status(201).json({
         status: "success",
         statusCode: 201,
