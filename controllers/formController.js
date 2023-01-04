@@ -9,9 +9,18 @@ exports.getForm = async (req, res) => {
     if (jwtValidation.userId !== null) {
       const user = await User.findById(jwtValidation.userId);
       if (user) {
-        let forms = {};
         if (req.query.path === "/dashboard") {
-          forms = await Form.find({}).limit(4).sort({
+          let forms = await Form.find({}).limit(4).sort({
+            createdAt: "desc",
+          });
+          return res.status(200).json({
+            status: "success",
+            statusCode: 200,
+            errors: null,
+            forms,
+          });
+        } else {
+          let forms = await Form.find({}).sort({
             createdAt: "desc",
           });
           return res.status(200).json({
