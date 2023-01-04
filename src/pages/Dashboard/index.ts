@@ -1,2 +1,2 @@
 export { default as Dashboard } from "./Dashboard"
-export { DashboardIndex, DashboardUserInfo } from "./Components"
+export { DashboardIndex, DashboardUserInfo, DashboardForms } from "./Components"
