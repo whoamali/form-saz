@@ -12,7 +12,7 @@ export default function DashboardLayout({
   children,
 }: IProps) {
   return (
-    <Stack sx={{ width: "100%", height: "100%", px: "50px", py: "30px", overflowY: "auto" }}>
+    <Stack sx={{ width: "100%", px: "50px", py: "30px", overflowY: "auto" }}>
       <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{mb: "30px"}}>
         <Typography variant="h3" fontSize="28px">
           {headerText}
